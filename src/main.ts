@@ -8,7 +8,7 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .addBearerAuth()
     .setTitle("API")
-    .setDescription("Restaurant Management System API ")
+    .setDescription("Order Management API")
     .setVersion("1.0")
     .addTag("API")
     .build();
