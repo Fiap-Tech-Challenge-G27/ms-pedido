@@ -4,7 +4,6 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 
 import { PostgresConfigServiceService } from "@infra/typeorm/postgres.service";
 
-import { CategoriesModule } from "@categories/categories.module";
 import { HealthModule } from "@modules/health/health.module";
 import { OrdersModule } from "@orders/orders.module";
 import { ProductsModule } from "@products/products.module";
@@ -17,7 +16,6 @@ import { ProductsModule } from "@products/products.module";
     TypeOrmModule.forRootAsync({
       useClass: PostgresConfigServiceService,
     }),
-    CategoriesModule,
     ProductsModule,
     OrdersModule,
     HealthModule,
