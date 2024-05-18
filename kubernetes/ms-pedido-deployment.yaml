@@ -12,7 +12,7 @@ spec:
       labels:
         app: ms-pedido
     spec:
-      containers: 
+      containers:
         - name: ms-pedido
           image: 851725345801.dkr.ecr.us-east-1.amazonaws.com/ms-pedido:{{VERSION}}
           imagePullPolicy: IfNotPresent
