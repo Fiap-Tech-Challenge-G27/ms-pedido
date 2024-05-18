@@ -30,7 +30,7 @@ function getExecutionContextMock(request: object) {
 describe("Auth Guard", () => {
   let authGuardMock: AuthGuard;
   let jwtServiceMock: JwtService;
-  let payload = { id: randomId() };
+  const payload = { id: randomId() };
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({

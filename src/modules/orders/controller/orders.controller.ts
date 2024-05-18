@@ -1,4 +1,4 @@
-import { AuthGuard } from "@modules/auth/auth.guard";
+import { AuthGuard } from "@common/auth/auth.guard";
 import {
   Body,
   Controller,
