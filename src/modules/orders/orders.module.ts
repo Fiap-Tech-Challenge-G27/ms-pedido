@@ -16,11 +16,9 @@ import { OrdersController } from "./controller/orders.controller";
 import { IOrderRepository } from "./core/order-repository.abstract";
 import { IPaymentGateway } from "./core/payment-gateway";
 import { PaymentGateway } from "./infra/typeorm/thirdParties/payment-gateway";
-import { ConfirmatePaymentUseCase } from "./use-cases/confimate-payment.usecase";
 import { CreateOrderUseCase } from "./use-cases/create-order.usecase";
 import { FindAllOrdersUseCase } from "./use-cases/find-all-orders.usecase";
 import { FindOrderUseCase } from "./use-cases/find-order.usecase";
-import { UpdateOrderUseCase } from "./use-cases/update-order.usecase";
 
 const basicProductModuleMetadata = {
   controllers: [OrdersController],
@@ -46,8 +44,6 @@ const basicProductModuleMetadata = {
     CreateOrderUseCase,
     FindAllOrdersUseCase,
     FindOrderUseCase,
-    UpdateOrderUseCase,
-    ConfirmatePaymentUseCase,
   ] as Array<Provider>,
 };
 
