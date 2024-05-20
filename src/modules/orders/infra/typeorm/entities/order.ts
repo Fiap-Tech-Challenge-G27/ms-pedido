@@ -35,7 +35,7 @@ export class Order {
   })
   paymentState: PaymentState;
 
-  @Column({ type: "uuid" })
+  @Column({ type: "string" })
   customerId: string;
 
   @CreateDateColumn({ name: "created_at", type: "timestamp" })
