@@ -34,7 +34,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: db-secret
-                  key: typeorm
+                  key: typeormurl
           volumeMounts:
             - name: secrets-store-inline
               mountPath: "/mnt/secrets-store"
@@ -45,7 +45,7 @@ spec:
             driver: secrets-store.csi.k8s.io
             readOnly: true
             volumeAttributes:
-              secretProviderClass: "aws-secrets-ms-pedido"  # Nome do seu SecretProviderClass
+              secretProviderClass: "aws-secrets-ms-producao"  # Nome do seu SecretProviderClass
 ---
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
