@@ -27,9 +27,11 @@ export class OrdersController {
   @ApiBearerAuth()
   @UseGuards(AuthGuard)
   async create(@Body() createOrdersDto: CreateOrderDto, @Request() req) {
+    console.log("req.customer" + req.customer);
+
     return await this.createOrderUseCase.execute(
       createOrdersDto,
-      req.customer.data.id,
+      req.customer.id,
     );
   }
 
@@ -37,7 +39,9 @@ export class OrdersController {
   @ApiBearerAuth()
   @UseGuards(AuthGuard)
   findAll(@Request() req) {
-    return this.findAllOrdersUseCase.execute(req.customer.data.id);
+    console.log("req.customer" + req.customer);
+
+    return this.findAllOrdersUseCase.execute(req.customer.id);
   }
 
   @Get(":id")
