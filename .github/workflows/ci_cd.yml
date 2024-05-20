@@ -80,5 +80,6 @@ jobs:
 
       - name: Deploy to AWS EKS
         run: |
+          kubectl apply -f kubernetes/secretproviderclass.yaml
           kubectl apply -f kubernetes/ms-pedido-deployment.yaml
           kubectl apply -f kubernetes/ms-pedido-service.yml
