@@ -12,6 +12,7 @@ spec:
       labels:
         app: ms-pedido
     spec:
+      serviceAccountName: irsasecrets
       containers:
         - name: ms-pedido
           image: 851725345801.dkr.ecr.us-east-1.amazonaws.com/ms-pedido:{{VERSION}}
@@ -20,7 +21,7 @@ spec:
             - containerPort: 3000
           resources:
             limits:
-              memory: "124Mi"
+              memory: "256Mi"
               cpu: "0.25"
           livenessProbe:
             httpGet:
@@ -28,4 +29,33 @@ spec:
               port: 3000
             initialDelaySeconds: 60
             periodSeconds: 10
-      restartPolicy: Always
+          env:
+            - name: TYPEORM_URL
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: typeorm
+          volumeMounts:
+            - name: secrets-store-inline
+              mountPath: "/mnt/secrets-store"
+              readOnly: true
+      volumes:
+        - name: secrets-store-inline
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: "aws-secrets-ms-pedido"  # Nome do seu SecretProviderClass
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: ms-pedido
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: ms-pedido
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80
